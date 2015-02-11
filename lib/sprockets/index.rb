@@ -11,6 +11,8 @@ module Sprockets
   # `Index` should not be initialized directly. Instead use
   # `Environment#index`.
   class Index < Base
+    attr_reader :environment
+
     def initialize(environment)
       @environment = environment
 
