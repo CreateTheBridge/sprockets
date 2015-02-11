@@ -35,7 +35,7 @@ module Sprockets
 
     def evaluate(context, locals, &block)
       # Use custom importer that knows about Sprockets Caching
-      cache_store = SassCacheStore.new(context.environment)
+      cache_store = SassCacheStore.new(context)
 
       options = {
         :filename => eval_file,
