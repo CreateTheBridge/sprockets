@@ -2,10 +2,14 @@ require 'sass'
 
 module Sprockets
   class SassCacheStore < ::Sass::CacheStores::Base
-    attr_reader :environment
+    attr_reader :context
 
-    def initialize(environment)
-      @environment = environment
+    def initialize(context)
+      @context = context
+    end
+
+    def environment
+      context.environment
     end
 
     def _store(key, version, sha, contents)
@@ -19,6 +23,14 @@ module Sprockets
         obj[:contents]
       else
         nil
+      end
+    end
+
+    def retrieve(key, sha)
+      super.tap do |result|
+        if result.respond_to? :context=
+          result.context = context
+        end
       end
     end
 
