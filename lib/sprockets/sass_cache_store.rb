@@ -6,7 +6,6 @@ module Sprockets
 
     def initialize(context)
       @context = context
-      puts "Context: #{@context}"
     end
 
     def environment
